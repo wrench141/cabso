@@ -1,38 +1,889 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+
+body{
+  background: rgb(241, 239, 239);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mapContainer{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.map{
+  width: 100%;
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidePanel{
+  width: 20%;
+  height:100%;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  padding: 30px;
+  font-size: 20px;
+  padding-top: 80px;
+  background: rgb(241, 239, 239);
+}
+
+.inpContainer{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  padding: 40px 0;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.inputBox{
+  width: 100%;
+  height: max-content;
   display: flex;
   flex-direction: column;
+}
+.wrapper{
+  width: max-content;
+  height: max-content;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 5px;
+}
+
+.inpContainer .inputBox .inp{
+  width: 100%;
+  height: 45px;
+  border:none;
+  outline: none;
+  /* border-radius: 5px; */
+  padding: 0 10px;
+  font-family: 'Montserrat';
+}
+
+.btn, .secondaryBtn{
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: blueviolet;
+  color: white;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.secondaryBtn{
+  border: 1px solid rgb(181, 102, 255);
+  background-color: transparent;
+  color: black;
+}
+
+.secondaryBtn:hover{
+  border: 1px solid transparent;
+  background-color: blueviolet;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.dropdown{
+  width: 100%;
+  max-height: 250px;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: rgb(247, 247, 247);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.dropdown .location{
+  cursor: pointer;
+  padding: 15px;
+}
+
+.dropdown .location:hover{
+  background-color: rgb(221, 221, 221);
+}
+
+.dropdown .location .place{
+  font-size: 15.5px;
+}
+
+.dropdown .location .sec{
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 5px;
+  color: rgb(34, 34, 34);
+}
+
+
+.autoLocation{
+  width: max-content;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.autoLocation .label{
+  margin-left: 10px;
+  position: relative;
+  z-index: 3;
+  user-select: none;
+}
+
+.autoLocation .default{
+  opacity: 0;
+  position: absolute;
+}
+
+
+.autoLocation .checkbox{
+  width: 15px;
+  height: 15px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.autoLocation .default:checked + .checkbox{
+  background: blueviolet;
+}
+
+.extraDetails{
+  width: 100%;
+  height: max-content;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+
+.extraDetails .priceDetails{
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.extraDetails .priceDetails .med{
+  font-size: 12px;
+  font-weight: 600
+}
+
+.extraDetails .priceDetails .small{
+  font-size: 10px;
+  font-weight: 400
+}
+
+.item{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  align-items: center;
+}
+
+.item .details{
+  margin-left: 10px;
+}
+.item .details .place{
+  font-size: 14px;
+}
+
+.item .details .sub{
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.line{
+  width: 3px;
+  height: 30px;
+  background-color: rgb(128, 128, 128);
+  margin-left: 5px;
+  border-radius:10px;
+}
+
+.navbar{
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  top: 0%;
+  left: 0;
+  background: rgb(241, 240, 240);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 4;
+  animation: autoHide 1s ease forwards;
+}
+
+@keyframes autoHide {
+  to{
+    transform:translateY(-100%) ;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+.navbar .title{
+  font-family: 'Montserrat';
+  font-size: 25px;
+  font-weight: 700
+}
+
+.navbar .other{
+  width: max-content;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.navbar .other .nav{
+  color: inherit;
+  text-decoration: none;
+}
+
+.navbar .other .cta{
+  width: max-content;
+  height: max-content;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: blueviolet;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+.hoverBtn{
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blueviolet;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  right: 30px;  
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+
+.hoverBtn:hover + .navbar, 
+.navbar:hover{
+  animation: hoverOpen 1s ease forwards;
+}
+
+@keyframes hoverOpen {
+  from{
+    transform:translateY(-100%) ;
   }
+  to{
+    transform:translateY(0%) ;
+  }
+}
+
+
+
+
+/* cars page  */
+
+
+.carsContainer{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  font-family: 'Montserrat';
+  background: rgb(241, 239, 239);
+  overflow: hidden;
+  padding-left: 50px;
+}
+
+
+.carsContainer .info{
+  width: max-content;
+  height: 150px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10px rgb(236, 236, 236);
+  border-radius: 5px;
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.carsContainer .info .address{
+  width: max-content;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+
+.carsContainer .info .address .card{
+  width: max-content;
+  height: 93%;
+  border: 3px dashed rgb(233, 233, 233);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.carsContainer .info .address .card .place{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.carsContainer .info .address .card .sub,
+.carsContainer .extraDetails .extra .subHead{
+  font-size: 15px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+
+.carsContainer .address .mid{
+  font-weight: 400;
+  font-size: 14.5px;
+  margin: 0 20px;
+}
+
+.carsContainer .extraDetails{
+  width: max-content;
+  height: 93%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.carsContainer .extraDetails .extra{
+  width: max-content;
+  height: 100%;
+  padding:0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.carsContainer .extraDetails .extra .value{
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.carsContainer .topbar{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  margin: 50px 0;
+  overflow: visible;
+  gap: 30px;
+}
+
+.carsContainer .topbar .inputContainer{
+  width: max-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.carsContainer .topbar .inputContainer .dropMenu{
+  width: 100%;
+  max-height: 300px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 45px;
+  left: 0;
+  overflow-y: scroll;
+  box-shadow: 3px 3px 10px rgb(231, 231, 231);
+}
+
+.carsContainer .topbar .inputContainer .dropMenu .carItem{
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-family: 'Montserrat';
+}
+
+.carsContainer .topbar .inputContainer .inputBox{
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.carsContainer .topbar .inputContainer .inputBox .box{
+  width: 45px;
+  height: 45px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carsContainer .topbar .inputContainer .inputBox .box:hover, 
+.carsContainer .topbar .inputContainer .dropMenu .carItem:hover{
+  cursor: pointer;
+  background: rgb(231, 231, 231);
+}
+
+.carsContainer .topbar .inputContainer .inputBox .inp{
+  width: max-content;
+  color: rgb(0, 0, 0);
+  height: 45px;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-family: 'Montserrat';  
+}
+
+
+.container{
+  width: 100%;
+  height: max-content;
+  padding: 0 50px;
+  margin:20px 0;
+  white-space:nowrap;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  scroll-snap-type: x mandatory;
+}
+
+.container::-webkit-scrollbar{
+  display: none;
+}
+
+.carCard{
+  width: 300px;
+  height: max-content;
+  background: white;
+  border-radius: 10px;
+  display: inline-block;
+  overflow: hidden;
+  margin-right: 40px;
+  scroll-snap-align: start;
+  user-select: none;
+  cursor: pointer;
+}
+
+.imageContainer{
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.imageContainer .carImg{
+  width: auto;
+  height: 100%;
+}
+
+.carCard .details{
+  width: 100%;
+  height: calc(100% - 180px);
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.carCard .details .name{
+  font-weight: 600;
+  margin-bottom: 9px;
+  font-size: 16px;
+}
+
+.carCard .details .brand{
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.carCard .details .tag{
+  width: max-content;
+  height: max-content;
+  font-size: 12px;
+  background-color: rgb(230, 230, 230);
+  padding: 4px 9px;
+  border-radius: 50px;
+}
+
+.carCard .btn{
+  width: 93%;
+  background: rgb(238, 238, 238);
+  margin: 10px;
+  color: black;
+}
+
+.carCard .btn:hover{
+  background-color: blueviolet;
+  color: white;
+}
+
+
+.barContainer{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.247);
+  top: 0%;
+  left: 0;
+  z-index: 5;
+}
+
+.close{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 20px;
+  right: 24%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.rightbar{
+  width: 23%;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.rightbar .head{
+  font-family: 'Montserrat';
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.rightbar .sub{
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.rightbar .tags{
+  width:100%;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.rightbar .tags .tag{
+  width: max-content;
+  height: max-content;
+  padding: 4px 9px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 40px;
+  font-size: 12px;
+
+}
+
+
+.selections{
+  margin: 20px 0;
+  width: 100%;
+  height: max-content;
+}
+
+.selections .lineContainer{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selections .lineContainer .circle{
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 4px solid blueviolet;
+}
+
+.selections .lineContainer .line{
+  width: 60%;
+  height: 4px;
+  background-color: blueviolet;
+  margin: 0;
+  border-radius: 0;
+}
+
+.center{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.placeContainer{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.placeContainer .place{
+  width: 130px;
+  height: max-content;
+  text-align: center;
+}
+
+.inputSection{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  gap: 30px;
+}
+
+.timeContainer{
+  width: 90%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.timeContainer .inpt{
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  border: 2px solid rgb(224, 224, 224);
+  border-radius: 10px;
+  padding: 0 15px;
+  font-family: 'Montserrat';
+}
+
+.timeContainer .current{
+  width: max-content;
+  height:max-content;
+  display: flex;
+  flex-direction: row;
+  padding: 0 5px;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.timeContainer .current .checkbox{
+  width: 0.0001px;
+  height: 0.0001px;
+  opacity: 0;
+}
+
+.timeContainer .current .box{
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgb(199, 199, 199);
+  margin-right: 5px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timeContainer .current .checkbox:checked + .box{
+  background: blueviolet;
+  border: 2px solid transparent;
+}
+
+.timeContainer .current label{
+  user-select: none;
+}
+
+.timeContainer .row{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.dateSelector{
+  width: max-content;
+  height: 50px;
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgb(224, 224, 224);
+}
+
+.label2{
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  color: rgb(121, 121, 121);
+  background-color: white;
+}
+
+.dateSelector .sec{
+  width: 50px;
+  height: 100%;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  scroll-snap-type: x mandatory;
+  user-select: none;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.dateSelector .sec .item, .Tsec .item{
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align:start;
+  font-size: 13px;
+
+}
+
+.Tsec .item{
+  width: 50px;
+  scroll-snap-align: none;
+}
+
+.Tsec .item:hover{
+  background-color: rgb(241, 241, 241);
+}
+
+
+.timeContainer .label{
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.colon{
+  height: 100%;
+  width: max-content;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container::-webkit-scrollbar{
+  display: none;
+}
+
+.Tsec{
+  width: max-content;
+  height: 50px;
+  background-color: white;
+  border:2px solid rgb(224, 224, 224);
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.total{
+  width: 100%;
+  height: max-content;
+  font-family: "Montserrat";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:10px 20px;
+}
+
+.total .label{
+  font-size: 14px;
+  padding-bottom: 4px;
+}
+
+.total .table{
+  width: 100%;
+  height: max-content;
+  border-radius: 10px;
+  border: 2px solid rgb(238, 238, 238);
+}
+
+.total .table .row{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat';
+  border-bottom: 2px solid rgb(238, 238, 238);
+}
+
+.total .table .row .head, 
+.total .table .row .sub{
+  font-size: 13px;
+  color: rgb(145, 145, 145);
+  width: 50%;
+  height: 100%;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  margin: 0;
+}
+
+.bg{
+  background-color: rgb(243, 243, 243);
+  border-bottom: none;
+}
+
+.inputSection .btn{
+  width: 90%;
 }
