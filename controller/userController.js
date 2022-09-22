@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-let WT_SECRET = process.env.WT_SECRET || "ASd9yskhb328sdF934gnsd8f4b2kre2Rvrc2@#$vn7fsdf";
+let WT_SECRET = process.env.WT_SECRET;
 
 export const signUpUser = (req, res) => {
     const {email, password} = req.body;

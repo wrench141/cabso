@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 let PORT = process.env.PORT || 4000
-let MONGOURI = process.env.DB || 'mongodb+srv://sid141:6ogtNQIXNckiSwkX@cluster0.0f0d2hi.mongodb.net/?retryWrites=true&w=majority';
+let MONGOURI = process.env.DB;
 
 app.use('/', userRoutes);
 
