@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes.js';
-import AuthMiddleWare from './middleware/authMiddleware.js';
 
 const app = express();
 app.use(cors());
