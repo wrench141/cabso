@@ -1,7 +1,9 @@
 import '../App.css'
 import allCars from './cars'
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createBill } from '../redux/billActions';
+import Notification from './notification';
 
 export default function RightBar ({state, setState, brand, estimatedPrice}) {
     const details = allCars.filter((car) => car.model === brand);
@@ -12,11 +14,12 @@ export default function RightBar ({state, setState, brand, estimatedPrice}) {
     const [mins, setMins] = useState();
     const [period, setPeriod] = useState('AM');
 
-    const nightCharges = period == "PM" && hrs > 6 ? details[0].charges + 2 : 0;
+    const nightCharges = period === "PM" && hrs > 6 ? details[0].charges + 2 : 0;
     let grandTotal = parseFloat(estimatedPrice) + details[0].charges + nightCharges;
 
 
     const InputRef = useRef();
+
 
 
     const getCurrentDate = () => {
@@ -28,10 +31,39 @@ export default function RightBar ({state, setState, brand, estimatedPrice}) {
         setDate(today)
     }
 
-    const {markerDetails} = useSelector((state) => state.mapReducer);
+    const dispatch = useDispatch();
+    const {markerDetails, totalTime} = useSelector((state) => state.mapReducer);
+    console.log(totalTime)
+    
+    const createBillHanler = () => {
+        let time = hrs + ':' + mins;
+        let locations = { 
+            start : markerDetails[0].result.p1,
+            end : markerDetails[1].result.p1
+        }
+        let car = {
+            name : details[0].model,
+            brand : details[0].brand,
+        }
+        let datetime = { 
+            date : date,
+            time : time,
+            period : period,
+            estime : Math.ceil(totalTime)
+        }
+        
+        dispatch(createBill({locations, car, datetime, grandTotal}));
+    }
+    const {msg, loading} = useSelector((state) => state.billReducer);
+
 
     return(
         <div className='barContainer'>
+            {
+                msg !== undefined ? (
+                    <Notification msg={msg} />
+                ) : null
+            }
             <div className='close' onClick={() => setState(!state)}>
             <ion-icon name="close-outline" style={{fontSize:30}}></ion-icon>
             </div>
@@ -51,8 +83,8 @@ export default function RightBar ({state, setState, brand, estimatedPrice}) {
                     </div>
                     <div className='center'>
                         <div className='placeContainer'>
-                            <p className='place'>{markerDetails[0].p1}</p>
-                            <p className='place'>{markerDetails[1].p1}</p>
+                            <p className='place'>{markerDetails[0].result.p1}</p>
+                            <p className='place'>{markerDetails[1].result.p1}</p>
                         </div>
                     </div>
                 </div>
@@ -135,19 +167,15 @@ export default function RightBar ({state, setState, brand, estimatedPrice}) {
                             </div>
                         </div>
                     </div>
-                    <button className='btn'>Confirm Book</button>
+                    <button onClick={() => createBillHanler()} style={msg !== undefined ? {backgroundColor: "#6de22b"} : null } className='btn'>
+                            {
+                                loading ? (
+                                    <div className='loading' /> 
+                                ) : msg !== undefined ? "Success" : "Confirm Booking"
+                            }
+                    </button>
                 </div>
             </div>
         </div>
     )
 }
-
-
-//fix time to reach
-//same location bug
-//404 pages
-//billing page
-
-
-//login & signup
-//bookings

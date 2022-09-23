@@ -66,13 +66,13 @@ export default function Cars(){
                     <div className='info'>
                         <div className='address'>
                             <div className='card'>
-                                <p className='place'>{markerDetails[0].p1}</p>
-                                <p className='sub'>{markerDetails[0].p2}</p>
+                                <p className='place'>{markerDetails[0].result.p1}</p>
+                                <p className='sub'>{markerDetails[0].result.p2}</p>
                             </div>
                             <p className='mid'>to</p>
                             <div className='card'>
-                                <p className='place'>{markerDetails[1].p1}</p>
-                                <p className='sub'>{markerDetails[1].p2}</p>
+                                <p className='place'>{markerDetails[1].result.p1}</p>
+                                <p className='sub'>{markerDetails[1].result.p2}</p>
                             </div>
                         </div>
                         <div className='extraDetails'>
@@ -81,7 +81,7 @@ export default function Cars(){
                                 <p className='subHead'>Total Distance</p>
                             </div>
                             <div className='extra'>
-                                <p className='value'>{pricePerKm}<span style={{fontSize:11, fontWeight:400}}>/-</span> </p>
+                                <p className='value'>{pricePerKm} <span style={{fontSize:11, fontWeight:400}}>/-</span> </p>
                                 <p className='subHead'>per Km</p>
                             </div>
                             <div className='extra'>

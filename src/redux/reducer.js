@@ -22,13 +22,25 @@ const authReducer = createReducer({}, {
         state.loading = false;
         state.msg = action.msg;
         state.isAuthenticated = true;
-        state.token = action.token
     },
     signupFailed: (state, action) => {
         state.loading = false;
         state.err = action.err;
         state.isAuthenticated = false
-    }
+    },
+    signinRequest: (state) => {
+        state.loading = true;
+    },
+    signinSuccess: (state, action) => {
+        state.loading = false;
+        state.msg = action.msg;
+        state.isAuthenticated = true;
+    },
+    signinFailed: (state, action) => {
+        state.loading = false;
+        state.err = action.err;
+        state.isAuthenticated = false
+    },
 })
 
 export default mapReducer;

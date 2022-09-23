@@ -6,8 +6,8 @@ let allCars = [
         'seats': 4,
         'type': 'Sedan',
         'fuel': 'Diesel/Petrol',
-        'img': '../assets/Swift.webp',
-        'charges': 3
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663750476/farePredictor/swift_pvd2mt.png',
+        'charges': 4
     },
     {
         'brand': 'Maruthi Suzuki',
@@ -15,7 +15,7 @@ let allCars = [
         'seats': 4,
         'type': 'Cuv',
         'fuel': 'Diesel',
-        'img': '../assets/Altto.webp',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663746996/farePredictor/Altto_wtajml.webp',
         'charges': 3
     },
     {
@@ -24,7 +24,7 @@ let allCars = [
         'seats': 4,
         'type': 'Cuv',
         'fuel': 'Diesel/Petrol',
-        'img': '../assets/spresso.webp',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663746992/farePredictor/spresso_bg8ios.webp',
         'charges': 3
     },
     {
@@ -33,8 +33,8 @@ let allCars = [
         'seats': 6,
         'type': 'Minivan',
         'fuel': 'Diesel/Petrol',
-        'img': '../assets/ertiga.webp',
-        'charges': 3
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663746992/farePredictor/ertiga_lilg23.webp',
+        'charges': 5
     },
     {
         'brand': 'Maruthi Suzuki',
@@ -42,7 +42,7 @@ let allCars = [
         'seats': 4,
         'type': 'Suv',
         'fuel': 'Diesel/Petrol',
-        'img': '../assets/brezza.webp',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663746992/farePredictor/brezza_zxp5mr.webp',
         'charges': 4
     },
 
@@ -53,7 +53,7 @@ let allCars = [
         'seats': 6,
         'type': 'Suv',
         'fuel': 'Diesel',
-        'img': '../assets/xuv700.webp',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663746999/farePredictor/xuv700_n7jbie.webp',
         'charges': 5
     },
     {
@@ -62,7 +62,7 @@ let allCars = [
         'seats': 4,
         'type': 'Suv',
         'fuel': 'Diesel',
-        'img': '../assets/xuv300.png',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663752576/farePredictor/xuv300_zhgjpi.png',
         'charges': 4
     },
     {
@@ -71,7 +71,7 @@ let allCars = [
         'seats': 4,
         'type': 'Suv',
         'fuel': 'Diesel',
-        'img': '../assets/Alturas2.webp',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663753084/farePredictor/alturas_1_aif5n7.png',
         'charges': 4
     },
     {
@@ -80,7 +80,7 @@ let allCars = [
         'seats': 6,
         'type': 'Suv',
         'fuel': 'Diesel',
-        'img': '../assets/marazzo-2.webp',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663752781/farePredictor/marazzo_1_yibe45.png',
         'charges': 5
     },
 
@@ -92,8 +92,8 @@ let allCars = [
         'seats': 4,
         'type': 'Sedan',
         'fuel': 'Petrol',
-        'img': '../assets/virtus.webp',
-        'charges': 3
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663746996/farePredictor/virtus_gljecn.webp',
+        'charges': 4
     },
     {
         'brand': 'Volkswagen',
@@ -101,7 +101,7 @@ let allCars = [
         'seats': 4,
         'type': 'Sedan',
         'fuel': 'Petrol',
-        'img': '../assets/vento.png',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663746994/farePredictor/vento_smy4ku.webp',
         'charges': 3
     },
     {
@@ -110,7 +110,7 @@ let allCars = [
         'seats': 4,
         'type': 'Suv',
         'fuel': 'Petrol',
-        'img': '../assets/Taigun.jpg',
+        'img': 'https://res.cloudinary.com/teamlit/image/upload/v1663746995/farePredictor/Taigun_uxs8ou.jpg',
         'charges': 4
     },
 

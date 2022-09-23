@@ -1,40 +1,34 @@
 import { useEffect, useState } from 'react'
 import '../auth.css'
 import { Link } from 'react-router-dom';
-import { signupUser } from '../redux/actions';
+import { signinUser} from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function Signup () {
+export default function Login () {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errmsg, setErr] = useState('');
     const [showPass, setShowPass] = useState(true);
-    const [details, setDetails] = useState('');
+    const [details, setDetails] = useState('')
     let enable = false;
 
     const dispatch = useDispatch()
+    const {msg, err} = useSelector((state) => state.authReducer);
 
     if(email != '' && password != ''){
         enable = true;
     }
 
-
-    const passCheck = (password) => {
-        if (email != '' && password != ''){
-            if(password.length > 5){
-                setErr('');
-                dispatch(signupUser({email, password}));
-                
-            }else{
-                setErr('password must be 8 characters long');
-            }
+    const passCheck = () => {
+        if(email != '' && password != ''){
+            setErr('');
+            dispatch(signinUser({email, password}));
         }else{
             setErr('Fields cannot be empty')
         }
     }
 
-    const {msg, err} = useSelector((state) => state.authReducer);
 
 
     useEffect(() => {
@@ -60,8 +54,8 @@ export default function Signup () {
                     </div>
                 </Link>
                 <div className='innersection'>
-                    <p className='head'>Register</p>
-                    <p className='sub'>Hi there, a simple registration there ahead. Complete to get a cab. </p>
+                    <p className='head'>Login</p>
+                    <p className='sub'>Welcome back, enjoy the cheapest and safe ride. </p>
                     <div className='inputContainer'>
                         <label className='label'>Email</label>
                         <input className='inp' value={email} onChange={(e) => setEmail(e.target.value) } placeholder='something@example.com'/>
@@ -82,10 +76,10 @@ export default function Signup () {
                         </div>
                         <p className='err'>{errmsg}</p>
                     </div>
-                    <button onClick={() => passCheck(password)} data-state={enable} className='btn'>REGISTER</button>
+                    <button onClick={() => passCheck(password)} data-state={enable}className='btn'>LOGIN</button>
 
-                    <Link to='/login' className='link'>
-                        <span style={{color:'black'}}>Already having an account?</span> Try Login
+                    <Link to='/register' className='link'>
+                        <span style={{color:'black'}}>Not having an account?</span> Register your account
                     </Link>
                 </div>
             </div>

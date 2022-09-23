@@ -1,0 +1,257 @@
+.billsContainer{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(236, 236, 236);
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.billsContainer .section{
+    width: 40%;
+    height: max-content;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0 5px 10px rgb(209, 209, 209);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 40px;
+    align-items: center;
+    font-family: 'Montserrat';
+    padding-bottom: 20px;
+}
+
+.billsContainer .section .head{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 2px dashed rgb(165, 165, 165);
+}
+
+
+.billsContainer .section .subhead, 
+.billsContainer .section .time{
+    width: 100%;
+    padding: 10px 0;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+}
+
+.billsContainer .section .subhead{
+    margin-top: 20px;
+}
+
+.billsContainer .section .time{
+    font-weight: 400;
+    padding: 0;
+    font-size: 13px;
+}
+
+.billsContainer .section .total{
+    margin: 10px 0;
+}
+
+.billsContainer .section .sub{
+    margin: 5px 0;
+    text-align: center;
+    width: 90%;
+    line-height: 150%;
+    font-size: 13px;
+    color: rgb(95, 95, 95);
+}
+
+.billsContainer .section .btn{
+    height: 55px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.billsContainer .section .cardetails{
+    width: 100%;
+    height: max-content;
+    margin-top: 10px;
+    border-bottom: 2px dashed rgb(165, 165, 165);
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+.billsContainer .section .cardetails .carImg{
+    width: auto;
+    height: 70px;
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+}
+
+.billsContainer .section .cardetails .details{
+    width: max-content;
+    padding: 0 30px;
+    height: max-content;
+}
+
+
+.billsContainer .section .cardetails .details .name{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.billsContainer .section .cardetails .details .subName{
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+
+.billsContainer .section .bill{
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px dashed rgb(165, 165, 165);
+    
+}
+
+.dbtn{
+    position: absolute;
+    bottom: 50px;
+    right: 34px;
+    width: max-content;
+    height: max-content;
+    padding: 15px 20px;
+    background-color: red;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: capitalize;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgb(209, 209, 209);
+}
+
+.popupBg{
+    width: 100%;
+    z-index: 4;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.274);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    animation: fade 0.5s ease forwards;
+}
+
+.popupBg .popup{
+    width: 350px;
+    height: max-content;
+    border-radius: 20px;
+    background-color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 5px 20px rgba(59, 59, 59, 0.384);
+    margin-bottom: 20px;
+    position: relative;
+    font-family: 'Montserrat';
+    opacity: 0;
+    animation-delay: 0.5s;
+    animation: fade 0.5s ease forwards;
+}
+
+@keyframes fade {
+    to{
+        opacity: 1;
+    }
+}
+
+.popupBg .popup .phead{
+    font-weight: 700;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.popupBg .popup .psub{
+    font-size: 14px;
+    line-height: 160%;
+}
+
+.popupBg .popup .buttonContainer{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.popupBg .popup .buttonContainer .btn{
+    width: 50%;
+    height:45px;
+    margin-bottom: 0;
+    background-color: red;
+}
+
+.popupBg .popup .buttonContainer .btn.outline{
+    background: rgb(233, 233, 233);
+    color: black;
+}
+
+.popupBg .popup .circle{
+    width: 50px;
+    height: 50px;
+    background-color: rgb(233, 233, 233);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    border-radius: 50%;
+    color: red;
+}
+.noneContainer{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.none{
+    font-weight: 700;
+    font-size: 40px;
+    font-family: "Montserrat";
+}
+
+.noneContainer .btn{
+    width:150px;
+    margin-top: 30px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1178px){
+
+    .none{
+        text-align: center;
+    }
+    .billsContainer .section {
+        width: 100%;
+    }
+    .billsContainer{
+        padding: 25px;
+    }
+    .dbtn{
+        bottom: 30px;
+    }
+    .total{
+        padding: 0;
+    }
+}

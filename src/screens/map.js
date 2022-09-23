@@ -6,7 +6,7 @@ import {useState, useEffect, useRef} from 'react';
 import Search from '../components/search';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { storeDistanceTime } from '../redux/actions';
+import { removeAllMarkers, storeDistanceTime } from '../redux/actions';
 
 const APIKEY = "9iplJFWN7wvWzNXKk1fnWLFdeFFAM4Pp";
 
@@ -15,29 +15,37 @@ function Map(){
     const mapElem = useRef();
     const [lat, setLat] = useState(27.333);
     const [lon, setLon] = useState(27.333);
-    const [zoom, setZoom] = useState(5);
+    const [zoom, setZoom] = useState(2);
     const [map, setMap] = useState({});
     const [distance, setDistance] = useState();
     const [show, setShow] = useState(false);
+    let enable = false;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(removeAllMarkers());
         if (navigator.geolocation) {
-            const position = (pos) => {
-              setLat(pos.coords.latitude);
-              setLon(pos.coords.longitude);
-              loadMap(pos.coords.latitude, pos.coords.longitude);
-            }
-            navigator.geolocation.getCurrentPosition(position);
+            navigator.geolocation.getCurrentPosition(getCurrentLocation, errLoc, {
+                enableHighAccuracy: true
+            });
         }
     }, []);
-
-    const loadMap = (lat, lon) => {
+    
+    const getCurrentLocation = (position) => {
+        setLat(position.coords.latitude);
+        setLon(position.coords.longitude);
+        loadMap(position.coords.latitude, position.coords.longitude);
+    }
+    const errLoc = () => {
+        loadMap(lat, lon);
+    };
+    
+    const loadMap = (lati, long) => {
         let map = tt.map({
             key: APIKEY,
             container: mapElem.current,
-            center: [lat, lon],
+            center: [lati,long],
             zoom: zoom
         })
         setMap(map);
@@ -66,7 +74,9 @@ function Map(){
         })
         setShow(true);
     }
-
+    if(allMarkers != undefined && allMarkers.length == 2){
+        enable = true;
+    }
     const getRoute = (e) => {
         let options = {
             key: APIKEY,
@@ -75,7 +85,7 @@ function Map(){
         e.preventDefault();
         if(allMarkers.length > 0){
             allMarkers.map((marker) => {
-                options.locations.push(marker.getLngLat());
+                options.locations.push(marker.marker.getLngLat());
             });
 
             ttapi.services.calculateRoute(options).then((res) => {
@@ -87,16 +97,19 @@ function Map(){
         };
     }
 
+    
+
 
     return(
         <div className='mapContainer'>
             <div className='sidePanel'>
-                <p className='head'>Location Details</p>
+                <p className='head'>Have a great ride</p>
                 <div className='inpContainer'>
-                    <Search placeholder="Pickup point" map={map}/>
-                    <Search placeholder="Dropoff point" map={map}/>
-                    <button onClick={(e) => getRoute(e)} className='btn'>Search</button>
+                    <Search placeholder="Pickup point" map={map} type={'start'}/>
+                    <Search placeholder="Dropoff point" map={map} type={'end'}/>
+                    <button onClick={(e) => getRoute(e)} data-state={enable} className='btn'>Search</button>
                 </div>
+                <div className='sideComponent'>
                 {
                     show ? (
                         <>
@@ -104,8 +117,8 @@ function Map(){
                             <div className='item'>
                                 <ion-icon name="star" style={{fontSize:15, color: 'rgb(128, 128, 128)'}}></ion-icon>
                                 <div className='details'>
-                                    <p className='place'>{markerDetails[0].p1}</p>
-                                    <p className='sub'>{markerDetails[0].p2}</p>
+                                    <p className='place'>{markerDetails[0].result.p1}</p>
+                                    <p className='sub'>{markerDetails[0].result.p2}</p>
                                 </div>
                             </div>
                             {
@@ -119,17 +132,17 @@ function Map(){
                                         <ion-icon name="star" style={{fontSize:15, color: 'rgb(128, 128, 128)'}}></ion-icon>
                                         <div className='details'>
                                             <p className='place'>{
-                                                markerDetails[1].p1
+                                                markerDetails[1].result.p1
                                             }</p>
                                             <p className='sub'>{
-                                                markerDetails[1].p2
+                                                markerDetails[1].result.p2
                                             }</p>
                                         </div>
                                     </div>
                                 ) : null
                             }
                         </div>
-                        <div className='extraDetails' style={{marginTop:20}}>
+                        <div className='extraDetails'>
                             <p className='priceDetails'>
                                 <span className='med'>Distance:</span> {distance} <span className='small'>Km</span>
                             </p>
@@ -141,13 +154,14 @@ function Map(){
                             </p>
                         </div>
                         <Link to='/cabs'>
-                            <button className='secondaryBtn' style={{marginTop:30}}>
+                            <button className='secondaryBtn'>
                                 Select Cab
                             </button>
                         </Link>
                         </>
                     ) : null
                 }
+                </div>
             </div>
             <div ref={mapElem} className='map'>
             </div>

@@ -18,6 +18,8 @@ body{
   height: 100vh;
 }
 
+
+
 .sidePanel{
   width: 20%;
   height:100%;
@@ -68,15 +70,45 @@ body{
   border: none;
   outline: none;
   border-radius: 5px;
-  background-color: blueviolet;
-  color: white;
   font-family: "Montserrat";
   font-weight: 600;
+  background-color: rgb(209, 209, 209);
   font-size: 14px;
+  margin-top: var(--margin-top);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  justify-content: center;
+}
+.btn[data-state = true]{
+  background-color: blueviolet;
 }
 
+.loading{
+  width: 30px;
+  height: 30px;
+  border: 5px solid white;
+  border-radius: 50%;
+  display: none;
+  border-top:5px solid transparent;
+  animation:loading 1s ease-in-out infinite;
+}
+
+@keyframes loading {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+
 .secondaryBtn{
+  --margin-top: 30px;
+  background-color: blueviolet;
   border: 1px solid rgb(181, 102, 255);
   background-color: transparent;
   color: black;
@@ -167,6 +199,10 @@ body{
   position: relative;
 }
 
+.extraDetails:nth-child(2){
+  margin-top: 20px;
+}
+
 .extraDetails .priceDetails{
   font-size: 18px;
   margin: 10px 0;
@@ -209,6 +245,36 @@ body{
   border-radius:10px;
 }
 
+.notification{
+  width: max-content;
+  height: 45px;
+  padding: 0 20px;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  top: -100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-family: "Montserrat";
+  animation: scrollDown 1s ease forwards;
+}
+
+@keyframes scrollDown {
+  to{
+    top: 20px;
+  }
+}
+
+@keyframes autoHide {
+  to{
+    transform:translateY(-100%) ;
+  }
+}
+
 .navbar{
   width: 100%;
   height: 70px;
@@ -220,13 +286,25 @@ body{
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  z-index: 4;
+  z-index: 6;
   animation: autoHide 1s ease forwards;
 }
 
-@keyframes autoHide {
+.clickablearea{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.096);
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  opacity: 0;
+  animation: opacity 0.5s ease forwards;
+}
+
+@keyframes opacity {
   to{
-    transform:translateY(-100%) ;
+    opacity: 1;
   }
 }
 
@@ -284,8 +362,7 @@ body{
 }
 
 
-.hoverBtn:hover + .navbar, 
-.navbar:hover{
+.hoverBtn[data-clicked = true] + .navbar{
   animation: hoverOpen 1s ease forwards;
 }
 
@@ -498,15 +575,15 @@ body{
 
 .imageContainer{
   width: 100%;
-  height: 180px;
+  height: 200px;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
 }
 
 .imageContainer .carImg{
-  width: auto;
-  height: 100%;
+  width: 100%;
+  height: auto
 }
 
 .carCard .details{
@@ -886,4 +963,241 @@ body{
 
 .inputSection .btn{
   width: 90%;
+}
+
+.navIcon{
+  display: none;
+}
+
+
+.pageContainer{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.pageContainer .num{
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-size: 150px;
+}
+
+.pageContainer .sub{
+  font-family: 'Montserrat';
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.pageContainer .btn{
+  width: max-content;
+  padding: 0 40px;
+}
+
+@media only screen and (max-width: 1178px){
+
+  .navbar{
+    height: 100vh;
+  }
+
+  .mapContainer{
+    flex-direction: column-reverse;
+  }
+
+  .sidePanel{
+    width: 100%;
+    height: max-content;
+    background: #F2F2F2;
+    position: fixed;
+    bottom: 0;
+    padding-top: 30px;
+    left: 0;
+    z-index: 3;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+  } 
+
+  .inpContainer{
+    padding: 10px 0 0 0;
+    gap:20px;
+    margin: 10px 0;
+  }
+
+  .inpContainer .inputBox .inp{
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 0 20px;
+  }
+
+  
+
+  .map{
+    width: 100%;
+    height: 100%;
+  }
+
+  .btn{
+    border-radius: 50px;
+    margin-top: 20px;
+  }
+  .dropdown{
+    background-color:rgb(249, 249, 249)
+  }
+
+  .sideComponent{
+    width: 100%;
+    height: max-content;
+    background-color: white;
+    position:absolute;
+    bottom: 0;
+    padding: 10px 2px;
+    left: 0;
+    overflow: hidden;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+  }
+  .extraDetails{
+    margin-top: 0;
+    padding: 15px 20px;
+  }
+
+  .secondaryBtn{
+    --margin-top:10px;
+    width: 90%;
+    
+  }
+
+  .extraDetails:nth-child(2){
+    margin-top: 0;
+    flex-direction: row;
+  }
+  
+  .extraDetails:nth-child(2) .priceDetails{
+    width: calc(100% / 3);
+    text-align: center;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 4px;
+    justify-content: center;
+  }
+
+  .carsContainer{
+    overflow: visible;
+    padding-bottom: 30px;
+    height: max-content;
+  }
+  .carsContainer .topbar{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .carsContainer .topbar .inputContainer .dropMenu{
+    z-index: 3;
+  }
+
+  .carsContainer .info{
+    position: static;
+    flex-direction: column;
+    height: max-content;
+    width: 300px;
+    transform: none;
+    padding: 30px 20px;
+  }
+
+  .carsContainer .extraDetails, 
+  .carsContainer .info .address{
+    flex-direction: column;
+  }
+
+  .carsContainer .extraDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .carsContainer .info .address{
+    margin-right: 0;
+    margin-bottom: 15px;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .carsContainer .info .address .card{
+    width: 100%;
+    padding: 10px 15px;
+  }
+
+  .carsContainer .extraDetails .extra{
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .carsContainer .info .address .card .sub, .carsContainer .extraDetails .extra .subHead{
+    font-size: 13px;
+  }
+
+  .rightbar{
+    top: -50px;
+    width: 100%;
+  }
+
+  .close{
+    z-index: 4;
+    background-color: #f3f3f3;
+    top: -40px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .carCard .btn{
+    background: blueviolet;
+    color: white;
+  }
+
+
+  .navbar{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 40px 20px;
+  }
+
+  .navbar .other{
+    width: 100%;
+    height: max-content;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar .title{
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .navbar .other .nav{
+    width: 100%;
+    height: 65px;
+    background: #ffffff;
+    border-radius: 14px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .navIcon{
+    display: block;
+    font-size: 20px;
+    margin-right: 15px;
+    margin-top: 5px;
+  }
+
+  .navbar .other .cta{
+    padding: 14px 28px;
+    border-radius: 11px;
+  }
 }

@@ -8,7 +8,7 @@ import { getAllMarkers } from "../redux/actions";
 
 const APIKEY = "9iplJFWN7wvWzNXKk1fnWLFdeFFAM4Pp";
 
-export default function Search ({placeholder, map}){
+export default function Search ({placeholder, map, type}){
 
 
     const [start, setStart] = useState('');
@@ -51,6 +51,7 @@ export default function Search ({placeholder, map}){
                     dropItem.appendChild(place);
                     dropItem.appendChild(sec);
                     dropItem.addEventListener('click', () => {
+                        setStart(result.p1);
                         markPoint({lat: result.lat, lon: result.lon, result});
                     })
                     dropBox.current.appendChild(dropItem);
@@ -59,6 +60,37 @@ export default function Search ({placeholder, map}){
         })
     }
 
+    const locateMe = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => getCurrentLocation(position), errLoc, {
+                enableHighAccuracy: true
+            });
+        }
+    }
+    const getCurrentLocation = (position) => {
+        const searchUri = `https://api.tomtom.com/search/2/search/${position.coords.latitude},${position.coords.longitude}.json?key=${APIKEY}`;
+        axios.get(searchUri).then((res) => {
+            let parts = res.data.results[0].address.freeformAddress.split(',');
+            let result = {
+                    p1: parts.length > 0 ? parts[0] : '',
+                    p2: parts.length > 1 ? parts[1] : '',
+                    p3: parts.length > 2 ? parts[2] : '',
+                    address: res.data.results[0].address.freeformAddress,
+                    lat: res.data.results[0].position.lat,
+                    lon: res.data.results[0].position.lon}
+            setStart(result.p1);
+            map.setCenter({lat: position.coords.latitude, lon: position.coords.longitude});
+            map.setZoom(15);
+            let marker = new tt.Marker().setLngLat({lat:position.coords.latitude, lon: position.coords.longitude}).addTo(map);
+            dispatch(getAllMarkers(marker, result, type="start"));
+        });
+        
+    }
+    
+    const errLoc = () => null;
+
+
+
     const dispatch = useDispatch();
 
     const markPoint = ({lat, lon, result}) => {
@@ -66,7 +98,7 @@ export default function Search ({placeholder, map}){
         map.setCenter({lat, lon});
         map.setZoom(15);
         let marker = new tt.Marker().setLngLat({lat, lon}).addTo(map);
-        dispatch(getAllMarkers(marker, result));
+        dispatch(getAllMarkers(marker, result, type));
     } 
     return(
         <div className='inputBox'>
@@ -74,12 +106,12 @@ export default function Search ({placeholder, map}){
             <div className='dropdown' ref={dropBox}></div>
             {
                 placeholder === 'Pickup point' ? (
-                    <div className="autoLocation">
+                    <div className="autoLocation" >
                         <input type="checkbox" id="check" className="default"/>
                         <div className="checkbox">
                             <ion-icon name="locate-outline" style={{color:'white', fontSize:10}}></ion-icon>
                         </div>
-                        <label className="label" for="check">Auto Locate</label>
+                        <label className="label" for="check" onClick={() => locateMe()}>Auto Locate</label>
                     </div>
                 ) : null
             }

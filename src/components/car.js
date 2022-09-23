@@ -1,5 +1,4 @@
 import '../App.css';
-import img from '../assets/Altto.webp'
 import { useSelector } from 'react-redux';
 
 export default function Car ({details, setState, setSelectedBrand}){
@@ -7,7 +6,7 @@ export default function Car ({details, setState, setSelectedBrand}){
     return(
         <div className='carCard'>
             <div className='imageContainer'>
-                <img className='carImg' src={img} />
+                <img className='carImg' src={details.img} />
             </div>
             <div className='details'>
                 <div>
