@@ -1,5 +1,5 @@
 import axios from 'axios';
-let serverUri = process.env.SERVER_URI || 'https://cabso-server.herokuapp.com/' ;
+let serverUri = process.env.SERVER_URI  ;
 
 let token = window.localStorage.getItem('token');
 

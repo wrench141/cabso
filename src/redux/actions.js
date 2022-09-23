@@ -6,7 +6,7 @@ let distance;
 let totalTime;
 let pricePerKm = 4;
 
-let serverUri = process.env.SERVER_URI || 'https://cabso-server.herokuapp.com/';
+let serverUri = process.env.SERVER_URI;
 
 
 //map actions 

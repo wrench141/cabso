@@ -22,15 +22,21 @@ body{
 
 .sidePanel{
   width: 20%;
-  height:100%;
+  height:100vh;
+  overflow-y: scroll;
   font-family: 'Montserrat';
   font-weight: 700;
   padding: 30px;
   font-size: 20px;
   padding-top: 80px;
   background: rgb(241, 239, 239);
-}
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} 
 
+.sidePanel::-webkit-scrollbar {
+  display: none;
+}
 .inpContainer{
   width: 100%;
   height: max-content;
@@ -1009,23 +1015,16 @@ body{
 
   .sidePanel{
     width: 100%;
-    height: 100vh;
-    overflow: scroll;
+    height: max-content;
     background: #F2F2F2;
     position: fixed;
     bottom: 0;
     padding-top: 30px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     left: 0;
     z-index: 3;
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
   } 
-
-  .sidePanel::-webkit-scrollbar {
-    display: none;
-  }
 
   .inpContainer{
     padding: 10px 0 0 0;
@@ -1063,6 +1062,7 @@ body{
     padding: 10px 2px;
     left: 0;
     overflow: hidden;
+    z-index: 3;
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
   }
@@ -1074,7 +1074,11 @@ body{
   .secondaryBtn{
     --margin-top:10px;
     width: 90%;
-    
+    margin: 0 auto;
+    background-color: blueviolet;
+    color: white;
+    text-decoration: none;
+    margin-top: var(--margin-top);
   }
 
   .extraDetails:nth-child(2){

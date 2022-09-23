@@ -116,7 +116,6 @@ export default function RightBar ({state, setState, brand, estimatedPrice}) {
                                 <div className='item' onClick={() => setPeriod('PM')}>PM</div>
                             </div>
                         </div>
-                        <p className='label'>Estimated Time to reach: 23:23</p>
                     </div>
                     <div className='total'>
                         <p className='label'>Confirm Details</p>
