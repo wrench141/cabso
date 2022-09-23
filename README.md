@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Cabso
+Cabso is a Webapp, for ordering cabs or taxis with cheapest fair prizes.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `Features`
+1. Enhanced Search.
+2. Routing and Marker pointing.
+3. Shows Distance between the selected Markers and also time taken to travel (including traffic).
+4. User Authentication.
+5. Cab Selection - 4, 6 seats cars.
+6. Order Cab and Manage your Cab bill.
 
-## Available Scripts
 
-In the project directory, you can run:
+### `Description`
+Cabso - fastest and cheapest way of traveling. This is a Full-stack app, made in `MERN` stack. It has fully functional token based authentication. If you book a cab it will also generate a bill for you which is shown in your `/bookings` page. You can even cancel your booking at anytime.
 
-### `npm start`
+### `Pricing`
+Our App pricing involves as per below points:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Obviously, price per KM (distance) - 4/KM
+2. Time Period - It takes extra charges if you are booking cab after 6 PM.
+3. Also Depends on which cab are you booking - sedan, suv...
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `API'S used`
+For making this webapp, we used `TOMTOM Maps` services. 
+1. Maps API
+2. Distance or Routing API
+3. Places API
 
-### `npm test`
+You can also find all API links in the source code
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+###  `Thankyou for your visit`
+**Note: If you wanna surf through the site server then, go to the server branch in this repository**

@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMarkers } from "../redux/actions";
 
-const APIKEY = "9iplJFWN7wvWzNXKk1fnWLFdeFFAM4Pp";
+const APIKEY = process.env.APIKEY;
 
 export default function Search ({placeholder, map, type}){
 

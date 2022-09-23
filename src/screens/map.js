@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { removeAllMarkers, storeDistanceTime } from '../redux/actions';
 
-const APIKEY = "9iplJFWN7wvWzNXKk1fnWLFdeFFAM4Pp";
+const APIKEY = process.env.APIKEY;
 
 
 function Map(){
