@@ -16,11 +16,11 @@ const createBill =  (req, res) => {
                 newBill.save();
                 res.status(200).json({"msg": "Cab booking successfull, have a happy ride"});
             }else {
-                res.status(400).json({"err":"You have already booked a cab"})                
+                res.status(400).json({"msg":"You have already booked a cab"})                
             }
         });
     } catch (error) {
-        res.status(400).json({'err': error})
+        res.status(400).json({'msg': error})
     }
 }
 
@@ -36,7 +36,7 @@ const getBill = (req, res) => {
             }
         });
     } catch (error) {
-        res.status(400).json({'err': error})
+        res.status(400).json({'msg': error})
     }
 }
 
@@ -48,7 +48,7 @@ const cancelBill = (req, res) => {
             res.status(201).json({"msg":"Your booking has been canceled"})
         });
     } catch (error) {
-        res.status(400).json({'err': error})
+        res.status(400).json({'msg': error})
     }
 }
 
