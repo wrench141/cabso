@@ -1,6 +1,6 @@
 # Cabso
-[https://cabso.netlify.app/](https://cabso.netlify.app/)
 Cabso is a Webapp, for ordering cabs or taxis with cheapest fair prizes.
+Deployed link - [https://cabso.netlify.app/](https://cabso.netlify.app/)
 
 ### `Features`
 1. Enhanced Search.
