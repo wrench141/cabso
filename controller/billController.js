@@ -16,7 +16,7 @@ const createBill =  (req, res) => {
                 newBill.save();
                 res.status(200).json({"msg": "Cab booking successfull, have a happy ride"});
             }else {
-                res.status(401).json({"err":"You have already booked a cab"})                
+                res.status(400).json({"err":"You have already booked a cab"})                
             }
         });
     } catch (error) {
@@ -30,7 +30,7 @@ const getBill = (req, res) => {
     try {
         BillModel.find({email : token.email}).then((bill) => {
             if(bill.length <= 0){
-                res.status(401).json({"msg":"You haven't booked a cab"})                
+                res.status(404).json({"msg":"You haven't booked a cab"})                
             }else {
                 res.status(200).json(bill);
             }
