@@ -30,7 +30,7 @@
 
 .registerContainer .sec .innersection{
     width: 70%;
-    height: 70%;
+    height: max-content;
     display: flex;
     margin-left:50px;
     margin-top:40px;

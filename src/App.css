@@ -383,7 +383,7 @@ body{
 
 .carsContainer{
   width: 100%;
-  height: 100vh;
+  height: 115vh;
   position: relative;
   font-family: 'Montserrat';
   background: rgb(241, 239, 239);
@@ -398,7 +398,7 @@ body{
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px rgb(236, 236, 236);
   border-radius: 5px;
-  position: fixed;
+  position: absolute;
   bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
@@ -1009,16 +1009,23 @@ body{
 
   .sidePanel{
     width: 100%;
-    height: max-content;
+    height: 100vh;
+    overflow: scroll;
     background: #F2F2F2;
     position: fixed;
     bottom: 0;
     padding-top: 30px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     left: 0;
     z-index: 3;
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
   } 
+
+  .sidePanel::-webkit-scrollbar {
+    display: none;
+  }
 
   .inpContainer{
     padding: 10px 0 0 0;
