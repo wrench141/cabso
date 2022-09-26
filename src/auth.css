@@ -158,6 +158,7 @@
 @media only screen and (max-width: 1178px){
     .registerContainer .sec:nth-child(1){
         width: 95%;
+        height: 100%;
     }
     .registerContainer .sec .innersection .sub{
         width: 100%;
@@ -165,6 +166,10 @@
 
     .registerContainer .sec .innersection{
         height: max-content;
+        margin-left: 46px;
+        width: 100%;
     }
-
+    .registerContainer .sec .innersection .inputContainer{
+        width: 80%;
+    }
 }

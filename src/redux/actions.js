@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 
 var markers = [];
 var markerDetails = [];
@@ -8,98 +8,107 @@ let pricePerKm = 4;
 
 let serverUri = process.env.SERVER_URI;
 
+//map actions
 
-//map actions 
+export const getAllMarkers = (marker, result, type) => async (dispatch) => {
+  if (markers.length < 2) {
+    markers = [...markers, { marker: marker, type: type }];
+    markerDetails = [...markerDetails, { result: result, type: type }];
+  } else {
+    let removeableMarkers = markers.filter((obj) => obj.type == type);
+    removeableMarkers.map((mar) => {
+      mar.marker.remove();
+    });
 
-export const getAllMarkers = (marker, result, type) => async(dispatch) => {
-    
-    if(markers.length < 2){
-        markers = [...markers, {marker:marker, type: type}];
-        markerDetails = [...markerDetails, {result: result, type :type }];
-    }else{
-        let removeableMarkers = markers.filter((obj) => obj.type == type);
-        removeableMarkers.map((mar) => {
-            mar.marker.remove();
-        })
+    markers = markers.filter((obj) => obj.type != type);
+    markerDetails = markerDetails.filter((obj) => obj.type != type);
+    markers = [...markers, { marker: marker, type: type }];
+    markerDetails = [...markerDetails, { result: result, type: type }];
+  }
 
-        markers = markers.filter((obj) => obj.type != type);
-        markerDetails = markerDetails.filter((obj) => obj.type != type);
-        markers = [...markers, {marker:marker, type: type}];
-        markerDetails = [...markerDetails, {result: result, type :type }];
-    }
+  console.log(markers);
+  dispatch({
+    type: "getMarkers",
+    markers: markers,
+    details: markerDetails,
+  });
+};
 
-    console.log(markers)
-    dispatch({
-        type : "getMarkers",
-        markers : markers,
-        details: markerDetails
-    })
-}
+export const storeDistanceTime = (totalDis, time) => async (dispatch) => {
+  distance = totalDis;
+  totalTime = time;
+  dispatch({
+    type: "getDistance",
+    tDistance: distance,
+    totalTime: totalTime,
+    pricePerKm: pricePerKm,
+  });
+};
 
-export const storeDistanceTime = (totalDis, time) => async(dispatch) => {
-    distance = totalDis;
-    totalTime = time;
-    dispatch({
-        type : "getDistance",
-        tDistance: distance,
-        totalTime: totalTime,
-        pricePerKm: pricePerKm
-    })
-}
+export const removeAllMarkers = () => async (dispatch) => {
+  markers = [];
+  markerDetails = [];
+};
 
-export const removeAllMarkers = () => async(dispatch) => {
-    markers = [];
-    markerDetails = [];
-}
+//user actions
 
-//user actions 
-
-export const signupUser = ({email, password}) => async(dispatch) => {
+export const signupUser =
+  ({ email, password }) =>
+  async (dispatch) => {
     try {
-        dispatch({"type": "signupRequest"});
-        
-        let msg = await axios.post(serverUri + '/signup', {email: email, password : password}, {
-            headers:{
-                'Content-type':'application/json'
-            }
-        })
+      dispatch({ type: "signupRequest" });
 
-        if(msg.data.token != undefined){
-            window.localStorage.setItem('token', msg.data.token);
-            dispatch({
-                "type":"signupSuccess",
-                "msg": msg.data.msg,
-            })
+      let msg = await axios.post(
+        serverUri + "/signup",
+        { email: email, password: password },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
         }
-    } catch (error) {
+      );
+
+      if (msg.data.token != undefined) {
+        window.localStorage.setItem("token", msg.data.token);
         dispatch({
-            "type":"signupFailed",
-            "err": error.response.data.err
-        })
+          type: "signupSuccess",
+          msg: msg.data.msg,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: "signupFailed",
+        err: error.response.data.err,
+      });
     }
-} 
+  };
 
-
-export const signinUser = ({email, password}) => async(dispatch) => {
+export const signinUser =
+  ({ email, password }) =>
+  async (dispatch) => {
     try {
-        dispatch({"type": "signinRequest"});
-        
-        let msg = await axios.post(serverUri + '/login', {email: email, password : password}, {
-            headers:{
-                'Content-type':'application/json'
-            }
-        })
-        if(msg.data.token != undefined){
-            window.localStorage.setItem('token', msg.data.token);
-            dispatch({
-                "type":"signinSuccess",
-                "msg": msg.data.msg,
-            })
+      dispatch({ type: "signinRequest" });
+
+      let msg = await axios.post(
+        serverUri + "/login",
+        { email: email, password: password },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
         }
-    } catch (error) {
+      );
+      if (msg.data.token != undefined) {
+        window.localStorage.setItem("token", msg.data.token);
         dispatch({
-            "type":"signinFailed",
-            "err": error.response.data.err
-        })
+          type: "signinSuccess",
+          msg: msg.data.msg,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: "signinFailed",
+        err: error.response.data.err,
+      });
     }
-} 
+  };

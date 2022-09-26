@@ -243,13 +243,16 @@
         text-align: center;
     }
     .billsContainer .section {
+        padding: 10px 20px;
         width: 100%;
     }
     .billsContainer{
-        padding: 25px;
+        padding:30px 25px;
+        height: max-content;
     }
     .dbtn{
-        bottom: 30px;
+        position: static;
+        margin-top: 20px;
     }
     .total{
         padding: 0;

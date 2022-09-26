@@ -280,6 +280,13 @@ body{
     transform:translateY(-100%) ;
   }
 }
+.err{
+  font-size: 12px;
+  color: red;
+  margin-top: 5px;
+  padding: 0 5px;
+}
+
 
 .navbar{
   width: 100%;
@@ -1013,6 +1020,10 @@ body{
     flex-direction: column-reverse;
   }
 
+  .carsContainer .topbar .inputContainer .inputBox .inp{
+    width: 255px;
+  }
+
   .sidePanel{
     width: 100%;
     height: max-content;
@@ -1085,7 +1096,9 @@ body{
     margin-top: 0;
     flex-direction: row;
   }
-  
+  .carCard{
+    margin: 0;
+  }
   .extraDetails:nth-child(2) .priceDetails{
     width: calc(100% / 3);
     text-align: center;
@@ -1100,10 +1113,11 @@ body{
     overflow: visible;
     padding-bottom: 30px;
     height: max-content;
+    padding-left: 0;
   }
   .carsContainer .topbar{
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .carsContainer .topbar .inputContainer .dropMenu{
@@ -1117,6 +1131,7 @@ body{
     width: 300px;
     transform: none;
     padding: 30px 20px;
+    margin: 0 auto;
   }
 
   .carsContainer .extraDetails, 
@@ -1210,5 +1225,17 @@ body{
   .navbar .other .cta{
     padding: 14px 28px;
     border-radius: 11px;
+  }
+  .container {
+    white-space: wrap;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    padding: 0;
   }
 }
